@@ -1,0 +1,78 @@
+//Configuracion FTP server Ubuntu
+//en VirtualBox 2 adaptadores el primero PUENTE y el 2do NAT
+//Configurar el archivo /network/interfacespara los adaptadores
+=>abre:
+nano /etc/network/interfaces
+-----------------config---------------
+iface lo inet loopback
+
+auto enp0s3
+iface enp0s3 inet static
+adderss 192.168.1.3
+netmask 255.255.255.0
+
+auto enp0s8
+iface enp0s8 inet dhcp
+---------------------------------------
+=>instalar vsftpd
+=> abre:
+nano /etc/vsftpd.conf
+-------------config--------------------
+listen=YES
+local_enable=YES
+anonymous_enable=NO
+write_enable=YES
+---------------------------------------
+=>reiniciar el servicio:
+	/etc/init.d/vsftpd restart
+============================SHELL=================================
+#!/bin/bash
+#comparacion de cadenas
+	[ "$var1" = "$var2" ]
+#operaciones
+	var = $(($var1 +-*/ $var2))
+#comparacion
+if [ $var -lt $var2 ]; then
+	///code
+else 
+	///code
+fi
+
+#case
+case $var in
+1) echo "A";;
+2) echo "B";;
+3) echo "C";;
+esac
+#while
+while [ $var -lt $var2 ]; do
+///code
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////
+iptables -A INPUT -s ipdeplayboy -j DROP
+iptables -A INPUT -p tcp --dport 21 -j DROP
+iptables -A INPUT -p tcp --dport 22 -j DROP
